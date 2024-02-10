@@ -1,0 +1,48 @@
+@import "./reset.scss";
+
+@font-face {
+    font-family: "GenFont";
+    src: url('../fonts/GenFont.ttf') format('truetype');
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+}
+
+.header__left {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-left: 4rem;
+    font-family: GenFont;
+}
+
+.header__logo {
+    height: 10rem;
+    width: 15rem;
+    margin-left: 1rem;
+
+}
+
+.header__right {
+    display: flex;
+    flex: 1;
+}
+
+.header__button {
+    font-family: GenFont;
+    flex: 1;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+    padding: 0px;
+    height: 10rem;
+    border: none;
+    font-size: 1.9rem;
+    cursor: pointer;
+}

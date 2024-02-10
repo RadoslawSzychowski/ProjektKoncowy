@@ -1,8 +1,14 @@
-
+import Header from './MainPage/Header';
+import Content from './MainPage/Content';
+import Footer from './MainPage/Footer';
 
 function App() {
   return (
-   <div>elo</div>
+    <>
+       <Header />
+    <Content />
+    <Footer />
+    </>
   );
 }
 

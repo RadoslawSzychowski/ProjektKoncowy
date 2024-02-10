@@ -1,0 +1,70 @@
+@import "./reset.scss";
+
+@font-face {
+    font-family: "GenFont";
+    src: url('../fonts/GenFont.ttf') format('truetype');
+}
+
+
+.content {
+    font-family: "GenFont";
+    position: relative;
+    text-align: center;
+
+}
+
+.content__background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.7;
+
+
+}
+
+.content__images {
+    display: flex;
+    gap: 15rem;
+    justify-content: center;
+}
+
+.content__image {
+    margin-top: 20rem;
+    padding-bottom: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content__image p {
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 2rem;
+    color: white;
+    letter-spacing: 2px;
+    line-height: 1.5;
+
+}
+
+.content__image__img {
+    width: 40rem;
+    height: 30rem;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.content__image:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 65rem;
+    background-color: rgba(0, 0, 0, 0.685);
+    top: 15rem;
+    left: 0;
+    z-index: -2;
+}
