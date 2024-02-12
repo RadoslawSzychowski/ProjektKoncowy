@@ -1,9 +1,27 @@
+@font-face {
+    font-family: "GenFont2";
+    src: url('../fonts/GenFont2.ttf') format('truetype');
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+    width: 100%;
+}
+
 .login-container {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 80vh;
+    overflow: hidden;
+    width: 20%;
+    background-color: white;
+    opacity: 0.6;
+    position: absolute;
+    right: 20%;
+    z-index: 3;
 
 }
 
@@ -13,7 +31,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    z-index: -1;
 }
 
 .background-gif {
@@ -24,63 +42,59 @@
 
 .overlay {
     position: absolute;
-    top: 0;
+    top: 100px;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 80%;
     background-color: rgba(0, 0, 0, 0.5);
-}
-
-.form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;;
-    background-color: white;
-    padding: 2rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    height: 100%;
-    opacity: 0.7;
     z-index: 2;
-    position: absolute;
-    right: 20%;
 }
 
-.form-container h2 {
-    margin-bottom: 1rem;
+
+.c-jTXIoq-bsgKCL-direction-vertical {
+    width: 100% !important;
+    height: 100% !important;
+    ;
 }
 
-.form-container form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+// forgot your password/ dont have acc / singup
+.supabase-auth-ui_ui-anchor {
+    font-size: 16px !important;
+    line-height: 25px;
+    font-family: 'GenFont2' !important
 }
 
-.form-container input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+// all login/singin buttons
+.supabase-auth-ui_ui-button {
+    height: 30px !important;
+    font-size: 13px !important;
+    font-family: 'GenFont2' !important;
+    border: 2px solid black !important;
+    width: 100%
 }
 
-.form-container button {
-    width: 100%;
-    padding: 0.5rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+;
+
+// form 
+.supabase-auth-ui_ui-input {
+    height: 30px;
+    font-family: 'GenFont2' !important;
+    border: 2px solid black !important;
+
+    &::placeholder {
+        font-family: 'GenFont2' !important;
+    }
+
+    &::autocomplete {
+        font-family: 'GenFont2' !important;
+    }
 }
 
-.form-container button:hover {
-    background-color: #0056b3;
+.supabase-auth-ui_ui-message {
+    font-family: 'GenFont2' !important;
+    font-size: 15px !important;
+    color: red !important;
+    line-height: 20px !important;
 }
 
-.error-message {
-    color: red;
-    margin-top: 1rem;
-}
+//}

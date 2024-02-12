@@ -1,9 +1,14 @@
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import Header from './MainPage/Header';
 import Content from './MainPage/Content';
 import Footer from './MainPage/Footer';
-import { BrowserRouter as Router } from 'react-router-dom';
+
 
 function App() {
+
+
   return (
     <Router basename="/">
       <div>

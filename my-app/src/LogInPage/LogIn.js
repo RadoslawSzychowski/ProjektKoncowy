@@ -1,40 +1,22 @@
-import React, { useState } from 'react';
-import gifBackground from '../images/loginVid.gif';
+import React from 'react';
 import './Login.scss';
+import { createClient } from '@supabase/supabase-js';
+import { Auth } from '@supabase/auth-ui-react';
+import gifBackground from '../images/loginVid.gif';
 
-const LogIn = () => {
-  // Stan dla danych logowania
-  const [loginData, setLoginData] = useState({ email: '', password: '' });
+const supabase = createClient('https://dkctxkxpgxbkrmjsewsh.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRrY3R4a3hwZ3hia3JtanNld3NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDc2NzI0NTMsImV4cCI6MjAyMzI0ODQ1M30.CcXELopL5At8GmP_LKtpXKNVS29z8FH3mqPamEsBlFI');
 
-  // Obsługa zmiany danych logowania
-  const handleLoginChange = (e) => {
-    const { name, value } = e.target;
-    setLoginData({ ...loginData, [name]: value });
-  };
-
-  // Obsługa logowania
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    // Tutaj możesz dodać logikę logowania
-    console.log('Dane logowania:', loginData);
-  };
-
-  return (
+const LogIn = () => (
+  <div className="container">
     <div className="login-container">
-      <div className="background-container">
-        <img src={gifBackground} alt="Background" className="background-gif" />
-        <div className="overlay"></div> {/* Dodajemy overlay */}
-      </div>
-      <div className="form-container">
-        
-        <form onSubmit={handleLoginSubmit}>
-          <input type="email" name="email" placeholder="Email" value={loginData.email} onChange={handleLoginChange} required />
-          <input type="password" name="password" placeholder="Hasło" value={loginData.password} onChange={handleLoginChange} required />
-          <button type="submit">Zaloguj się</button>
-        </form>
-      </div>
+      <Auth supabaseClient={supabase} />
     </div>
-  );
-}
+  <div className="background-container">
+      <img src={gifBackground} alt="Background"className="background-gif" />
+      
+    </div>
+      <div className="overlay"></div>
+  </div>
+);
 
 export default LogIn;
