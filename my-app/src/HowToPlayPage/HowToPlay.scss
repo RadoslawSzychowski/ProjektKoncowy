@@ -6,7 +6,6 @@
 .section {
   display: flex;
   margin-bottom: 40px;
-
 }
 
 .section-content {
@@ -25,6 +24,7 @@
 .section-content img {
   max-width: 400px;
   border-radius: 10px;
+  min-height: 250px;
   max-height: 250px;
 }
 

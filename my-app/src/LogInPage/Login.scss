@@ -1,100 +1,88 @@
-@font-face {
-    font-family: "GenFont2";
-    src: url('../fonts/GenFont2.ttf') format('truetype');
-}
-
 .container {
-    display: flex;
-    justify-content: center;
-    height: 80vh;
-    width: 100%;
-}
-
-.login-container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+    height: 100vh;
+    width: 100%;
     overflow: hidden;
-    width: 20%;
-    background-color: white;
-    opacity: 0.6;
-    position: absolute;
-    right: 20%;
-    z-index: 3;
-
 }
 
 .background-container {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-.background-gif {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: auto;
+    height: auto;
+    background-size: contain;
+    min-width: 100%;
+    min-height: 100%;
+    transform: scaleX(-1);
 }
 
 .overlay {
     position: absolute;
-    top: 100px;
+    top: 0;
     left: 0;
     width: 100%;
-    height: 80%;
-    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
     z-index: 2;
 }
 
+.login-panel {
+    position: absolute;
+    right: 25%;
+    top: 0;
+    height: 100%;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    opacity: 0.7;
+    z-index: 3;
+}
 
+
+
+
+/* Style for Supabase UI */
 .c-jTXIoq-bsgKCL-direction-vertical {
     width: 100% !important;
     height: 100% !important;
-    ;
 }
 
-// forgot your password/ dont have acc / singup
+.supabase-auth-ui_ui-anchor,
+.supabase-auth-ui_ui-button,
+.supabase-auth-ui_ui-input,
+.supabase-auth-ui_ui-message {
+    font-family: 'GenFont2' !important;
+}
+
 .supabase-auth-ui_ui-anchor {
     font-size: 16px !important;
     line-height: 25px;
-    font-family: 'GenFont2' !important
 }
 
-// all login/singin buttons
 .supabase-auth-ui_ui-button {
     height: 30px !important;
     font-size: 13px !important;
-    font-family: 'GenFont2' !important;
     border: 2px solid black !important;
-    width: 100%
 }
 
-;
-
-// form 
 .supabase-auth-ui_ui-input {
     height: 30px;
-    font-family: 'GenFont2' !important;
     border: 2px solid black !important;
-
-    &::placeholder {
-        font-family: 'GenFont2' !important;
-    }
-
-    &::autocomplete {
-        font-family: 'GenFont2' !important;
-    }
 }
 
 .supabase-auth-ui_ui-message {
-    font-family: 'GenFont2' !important;
     font-size: 15px !important;
     color: red !important;
     line-height: 20px !important;
 }
 
-//}
+div[class=""] {
+    width: 400px;
+    padding: 10px;
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import './Login.scss';
 import { createClient } from '@supabase/supabase-js';
 import { Auth } from '@supabase/auth-ui-react';
-import gifBackground from '../images/loginVid.gif';
+import BackgroundVideo from '../images/loginVid.mp4';
 
 
 
@@ -13,16 +13,16 @@ const LogIn = () => {
 
 
   return (
-  <div className="container">
-    <div className="login-container">
-      <Auth supabaseClient={supabase} />
+    <div className="container">
+      <div className="background-container">
+        <video src={BackgroundVideo} autoPlay muted loop className="background-video" />
+        <div className="overlay"></div>
+      </div>
+      <div className="login-panel">
+        <Auth supabaseClient={supabase} />
+      </div>
     </div>
-  <div className="background-container">
-      <img src={gifBackground} alt="Background"className="background-gif" />
-      
-    </div>
-      <div className="overlay"></div>
-  </div>)
+  );
 };
 
 export default LogIn;
