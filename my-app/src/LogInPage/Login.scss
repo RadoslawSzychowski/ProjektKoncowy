@@ -30,12 +30,13 @@
     z-index: 2;
 }
 
+/* Stylowanie panelu logowania */
 .login-panel {
     position: absolute;
     right: 25%;
     top: 0;
     height: 100%;
-    width: auto;
+    width: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,45 +45,49 @@
     z-index: 3;
 }
 
-
-
-
-/* Style for Supabase UI */
-.c-jTXIoq-bsgKCL-direction-vertical {
-    width: 100% !important;
-    height: 100% !important;
+/* Style dla inputów */
+.input-login,
+.input-password {
+    width: 95%;
+    height: 40px;
+    margin-bottom: 15px;
+    font-family: 'GenFont2', sans-serif;
+    font-size: 18px;
+    border: 2px solid rgba(0, 0, 0, 0.658);
+    border-radius: 6px;
 }
 
-.supabase-auth-ui_ui-anchor,
-.supabase-auth-ui_ui-button,
-.supabase-auth-ui_ui-input,
-.supabase-auth-ui_ui-message {
-    font-family: 'GenFont2' !important;
-}
-
-.supabase-auth-ui_ui-anchor {
-    font-size: 16px !important;
-    line-height: 25px;
-}
-
-.supabase-auth-ui_ui-button {
-    height: 30px !important;
-    font-size: 13px !important;
-    border: 2px solid black !important;
-}
-
-.supabase-auth-ui_ui-input {
+/* Specyficzne style dla przycisków formularza logowania */
+.btn-login,
+.btn-toggle {
+    width: 100%;
     height: 30px;
-    border: 2px solid black !important;
+    margin-bottom: 10px;
+    font-family: 'GenFont2', sans-serif;
+    font-size: 16px;
+    
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
 }
 
-.supabase-auth-ui_ui-message {
-    font-size: 15px !important;
-    color: red !important;
-    line-height: 20px !important;
+.btn-login:hover,
+.btn-toggle:hover {
+    background-color: #e67b7b;
 }
 
-div[class=""] {
+
+.inputs {
     width: 400px;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.errorMessage {
+    font-family: 'GenFont2', sans-serif;
+    font-size: 15px;
+    color: red;
+    line-height: 20px;
+    margin-top: 10px;
 }
