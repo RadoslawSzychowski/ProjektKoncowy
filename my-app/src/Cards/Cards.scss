@@ -1,0 +1,96 @@
+.card {
+    position: relative;
+    margin: 10px;
+    display: inline-block;
+    background-color: #f0f0f0;
+    width: 17rem;
+    height: 26rem;
+}
+
+.card img {
+    width: 100%;
+    position: relative;
+    height: auto;
+}
+
+.stars {
+    position: absolute;
+    color: gold;
+    font-weight: bold;
+    top: 1.4rem;
+    left: 1.5rem;
+    font-size: 1.6rem;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    cursor: default;
+}
+
+.stats {
+    position: relative;
+    bottom: 40px;
+    left: 40px;
+}
+
+.health-bar-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 4rem);
+    height: 1rem;
+    box-shadow: 0 0 0 0.5px #000;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.health-bar {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.3s ease;
+    animation: breathing 3s ease-in-out infinite;
+    filter: brightness(1.2) saturate(1.5);
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
+    position: relative;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2rem);
+    height: 2.5rem;
+    opacity: 1;
+    background-color: transparent;
+
+    button {
+        flex: 1;
+        background-color: transparent;
+        opacity: 0.9;
+        border: none;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+        border-radius: 10px;
+
+
+        img {
+            width: 30px;
+            height: auto;
+        }
+    }
+}
+
+.attack-button {
+    background-image: radial-gradient(circle at center, #ff0000 30%, transparent 70%);
+}
+
+.heal-button {
+    background-image: radial-gradient(circle at center, #00aa00 20%, transparent 70%);
+}
+
+.def-button {
+    background-image: radial-gradient(circle at center, #444444 10%, transparent 70%);
+}

@@ -1,5 +1,10 @@
 @import "./reset.scss";
 
+html,
+body {
+    overflow-x: hidden;
+}
+
 .content {
     font-family: "GenFont2";
     position: relative;
@@ -27,6 +32,8 @@
 }
 
 .content__image {
+    padding-left: 30px;
+    padding-right: 30px;
     margin-top: 20rem;
     padding-bottom: 33rem;
     display: flex;
@@ -42,14 +49,23 @@
     color: white;
     letter-spacing: 2px;
     line-height: 1.5;
-
+    z-index: 4;
+    text-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
 }
 
 .content__image__img {
-    width: 40rem;
-    height: 30rem;
+    width: 44rem;
+    height: 25rem;
     margin-bottom: 10px;
+    margin-top: 50px;
     position: relative;
+    border: 3px solid black;
+    box-shadow:
+        0 0 15px 5px rgba(0, 0, 0, 0.9),
+        0 0 30px 10px rgba(0, 0, 0, 0.8),
+        0 0 45px 15px rgba(0, 0, 0, 0.7),
+        0 0 60px 20px rgba(0, 0, 0, 0.6),
+    ;
 }
 
 .content__image:before {
@@ -70,6 +86,7 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 
 
     .video-container-world-introduction {
@@ -128,11 +145,13 @@
             margin-bottom: 9rem;
 
             img {
-                width: calc(33% - 90px);
+                width: calc(33% - 200px);
+                position: relative;
                 margin: 0 10px;
                 border-radius: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                box-shadow: 20px 20px 10px rgba(0, 0, 0, 0.6);
                 transition: transform 0.2s ease, box-shadow 0.2s ease;
+                z-index: 90;
 
                 &:hover {
                     transform: scale(1.05);
@@ -177,7 +196,7 @@
     font-size: 4.5rem;
     font-weight: bold;
     border: none;
-    transition: background-color 0.3s, transform 0.3s;
+    transition: background-color 0.1s, transform 0.1s;
     text-decoration: none;
     cursor: pointer;
     opacity: 0.8;
@@ -205,8 +224,20 @@
             opacity: 1;
             transform: translate(-50%, -50%) scale(1); // 
         }
+
         transition: color 0.3s ease,
         text-shadow 0.3s ease;
         text-shadow: 0 0 3px #fff;
     }
+}
+
+.section-with-gradient2 {
+    width: 100%;
+    height: 8rem;
+    position: absolute;
+
+    left: 50%;
+    z-index: 40;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.795) 50%, transparent);
 }

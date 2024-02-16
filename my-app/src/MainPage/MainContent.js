@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 
 import '../CSS/Content.scss';
-import imgcontent1 from '../images/imgcontent1.png';
-import imgcontent2 from '../images/imgcontent2.png';
-import imgcontent3 from '../images/imgcontent3.png';
+import imgcontent1 from '../images/imgcontent1.webp';
+import imgcontent2 from '../images/imgcontent2.webp';
+import imgcontent3 from '../images/imgcontent3.webp';
 import SectionImg1 from '../images/SectionImg1.jpg';
 import SectionImg2 from '../images/SectionImg2.jpg';
 import SectionImg3 from '../images/SectionImg3.jpg';
-import SectionImg4 from '../images/symbols.webp';
 import Carousel from '../Carousel/Carousel';
 
 const MainContent = () => {
@@ -36,7 +35,7 @@ const MainContent = () => {
         </div>
       </div>
     </div>
-      <img className="icons-world-introduction" src={SectionImg4} alt="Icons" />
+      <div className="section-with-gradient2"></div>
       <section className="world-introduction">
         <div className="content-container-world-introduction">
           
