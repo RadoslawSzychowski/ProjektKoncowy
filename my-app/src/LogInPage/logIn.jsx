@@ -2,22 +2,20 @@ import React, { useState } from 'react';
 import './Login.scss';
 import BackgroundVideo from '../images/loginVid.mp4';
 import { useAuth } from '../SupaBase/useAuth';
+import { Link } from 'react-router-dom';
 
 
-// Komponent RightSidebar
+
 const LogIn = () => {
-  // niestandardowy hook useAuth do zarządzania autoryzacją użytkownika
   const { user, signUp, login, logout } = useAuth();
 
-  // lokalne stany dla email, hasła i stanu logowania
-  const [email, setEmail] = useState(''); // lokalny stan dla email
-  const [password, setPassword] = useState(''); // lokalny stan dla hasła
-  const [isLoggingIn, setIsLoggingIn] = useState(true); // lokalny stan dla określenia, czy użytkownik loguje się czy rejestruje
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoggingIn, setIsLoggingIn] = useState(true);
 
-  // Funkcja obsługująca logowanie/rejestrację
+
   const handleAuthAction = async (e) => {
     e.preventDefault();
-    // Jeśli użytkownik loguje się, wywołaj funkcję login, w przeciwnym razie wywołaj signUp
     if (isLoggingIn) {
       await login(email, password);
     } else {
@@ -26,16 +24,22 @@ const LogIn = () => {
   };
 
 
+
   return (
-    <div className="right-sidebar">
+    <div className="loggedInPage">
+      <div className="background-container">
+        <video src={BackgroundVideo} autoPlay muted loop className="background-video" />
+        <div className="overlay"></div></div>
       {user ? (
-        // Jeśli użytkownik jest zalogowany, wyświetl powitanie i przycisk wylogowania
-        <>
+        <div className="loggedIn">
           <p>Welcome, {user.email}</p>
-          <button onClick={logout}>Logout</button>
-        </>
+          <p>You have successfully logged in.</p>
+          <p>You can either play the game or logout.</p>
+          <Link  className='link-btn' to="/Game"> <button className='btn-play'>Play now</button></Link>
+          <button className='btn-logout' onClick={logout}>Logout</button>
+        </div>
       ) : (
-        // Jeśli użytkownik nie jest zalogowany, wyświetl alternatywny widok
+
         <div className="container">
           <div className="background-container">
             <video src={BackgroundVideo} autoPlay muted loop className="background-video" />
@@ -55,7 +59,7 @@ const LogIn = () => {
               </div>
               <button type="submit" className="btn-login">{isLoggingIn ? 'Login' : 'Sign Up'}</button>
               <button type="button" className="btn-toggle" onClick={() => setIsLoggingIn(!isLoggingIn)}>
-                {isLoggingIn ? 'Need an account? Sign Up' : 'Have an account? Login'}
+                {isLoggingIn ? 'Sign Up' : 'Have an account? Login'}
               </button>
             </form>
 

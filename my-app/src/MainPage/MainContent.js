@@ -4,7 +4,11 @@ import '../CSS/Content.scss';
 import imgcontent1 from '../images/imgcontent1.png';
 import imgcontent2 from '../images/imgcontent2.png';
 import imgcontent3 from '../images/imgcontent3.png';
-
+import SectionImg1 from '../images/SectionImg1.jpg';
+import SectionImg2 from '../images/SectionImg2.jpg';
+import SectionImg3 from '../images/SectionImg3.jpg';
+import SectionImg4 from '../images/symbols.webp';
+import Carousel from '../Carousel/Carousel';
 
 const MainContent = () => {
   const [videoStarted, setVideoStarted] = useState(false);
@@ -14,7 +18,7 @@ const MainContent = () => {
   };
 
   return (
-
+<>
     <div className="content" onClick={startVideo}>
       <video src={require('../images/vid.mp4')} autoPlay muted loop className="content__background-video" />
       <div className="content__images">
@@ -32,6 +36,28 @@ const MainContent = () => {
         </div>
       </div>
     </div>
+      <img className="icons-world-introduction" src={SectionImg4} alt="Icons" />
+      <section className="world-introduction">
+        <div className="content-container-world-introduction">
+          
+          <div className="video-container-world-introduction">
+            <video autoPlay muted loop className="background-video-world-introduction">
+              <source src={require('../images/sectionVid.mp4')} type="video/mp4" />
+            </video>
+          </div>
+          <h2>Discover the World of Arcana</h2>
+          <p>Embark on an epic journey through mystical lands. Explore ancient ruins, enchanted forests, and treacherous dungeons. Each environment in the World of Arcana is filled with unique challenges, hidden secrets, and ancient lore waiting to be unraveled.</p>
+          <div className="images-world-introduction">
+            <img src={SectionImg2} alt="Character1" />
+            <img src={SectionImg1} alt="Character2" />
+            <img src={SectionImg3} alt="Character3" />
+          </div>
+          <a href="/login" className="explore-button">Play Now</a>
+        
+        </div>
+      </section>
+      <Carousel />
+    </>
   );
 }
 

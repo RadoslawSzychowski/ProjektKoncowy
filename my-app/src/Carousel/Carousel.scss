@@ -1,0 +1,102 @@
+.carousel-content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100rem;
+    width: 100vw;
+    z-index: 5;
+}
+
+.carousel-content:before {
+    content: "";
+    position: absolute;
+    width: 99vw;
+    height: 100rem;
+    background-color: rgba(0, 0, 0, 0.9);
+    top: 0rem;
+    left: 0;
+    z-index: -2;
+}
+
+.carousel__background-video {
+    position: absolute;
+    width: 99.1vw;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+}
+
+.carousel__images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.carousel__image {
+    display: block;
+    opacity: 0;
+    width: 60%;
+    object-fit: contain;
+    transition: opacity 2s ease-in-out, transform 0.8s ease;
+    position: absolute;
+    top: 59%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    border: solid 8px black 0.5;
+    box-shadow:
+        0 0 25px 15px rgba(0, 0, 0, 0.9),
+        0 0 40px 30px rgba(0, 0, 0, 0.8),
+        0 0 60px 45px rgba(0, 0, 0, 0.7),
+        0 0 80px 60px rgba(0, 0, 0, 0.6),
+        0 0 100px 80px rgba(0, 0, 0, 0.5),
+        0 0 130px 110px rgba(0, 0, 0, 0.4);
+
+    &--active {
+        opacity: 1;
+        z-index: 3;
+    }
+}
+
+.carousel__image:hover {
+    transform: translate(-50%, -50%) scale(1.25);
+    transition: transform 0.8s ease;
+}
+
+
+
+.carousel__image--active {
+    opacity: 1;
+    display: block;
+}
+
+.carousel-content h1 {
+    z-index: 2;
+    color: #f0f0f0;
+    font-size: 5rem;
+    font-family: GenFont2;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    top: 11rem;
+    position: absolute;
+}
+
+.section-with-gradient {
+    width: 100%;
+    height: 12rem;
+    position: absolute;
+
+    left: 50%;
+    z-index: 40;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 1.5) 50%, transparent);
+}
