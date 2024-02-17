@@ -94,3 +94,48 @@
 .def-button {
     background-image: radial-gradient(circle at center, #444444 10%, transparent 70%);
 }
+
+.heal-value {
+    position: absolute;
+    top: 50%;
+    right: 22%;
+    color: #00ff00;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    font-size: 3.2rem;
+    animation: fadeOut 2.5s ease-out forwards;
+
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+}
+
+.damage-value {
+    position: absolute;
+    top: 50%;
+    left: 22%;
+    color: #ff0000;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    font-size: 3.2rem;
+
+    animation: fadeOut 1.5s ease-out forwards;
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+}
+

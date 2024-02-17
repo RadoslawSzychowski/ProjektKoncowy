@@ -2,6 +2,7 @@ class Card {
     constructor(name, hp, attack, defense, stars) {
         this.name = name;
         this.hp = hp;
+        this.maxHp = hp;
         this.attack = attack;
         this.defense = defense;
         this.stars = stars;

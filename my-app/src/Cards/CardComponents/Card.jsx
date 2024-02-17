@@ -1,28 +1,78 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Cards.scss';
 
-function Card({ card }) {
-  const healthPercentage = (card.hp / card.maxHp) * 100;
-  let healthBarColor = 'rgba(76, 175, 80, 0.7)';
+function Card({ card, onHeal, onAttack, attackMode }) {
+  const [recentlyHealed, setRecentlyHealed] = useState(false);
+  const [healAmount, setHealAmount] = useState(0);
+  const healthPercentage = Math.round((card.hp / card.maxHp) * 100);
+  const [showDamage, setShowDamage] = useState(false);
 
-  if (healthPercentage < 35) {
-    healthBarColor = 'rgba(244, 67, 54, 0.7)';
-  } else if (healthPercentage < 50) {
-    healthBarColor = 'rgba(255, 235, 59, 0.7)';
+  useEffect(() => {
+    if (recentlyHealed) {
+      const timer = setTimeout(() => {
+        setRecentlyHealed(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [recentlyHealed]);
+
+  useEffect(() => {
+    if (card.recentDamage) {
+      setShowDamage(true);
+      const timer = setTimeout(() => {
+        setShowDamage(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [card.recentDamage]);
+
+
+  const handleHeal = () => {
+    const healValue = Math.round(card.maxHp * 0.1) + Math.floor(Math.random() * 10) + 1;
+    onHeal(card, healValue);
+    setHealAmount(healValue);
+    setRecentlyHealed(true);
+  };
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+    if (attackMode.isActive && attackMode.attackingCard && attackMode.attackingCard.name !== card.name) {
+      onAttack(card);
+    }
+  };
+
+  const handleAttackClick = (e) => {
+    e.stopPropagation();
+    onAttack(card);
+  };
+
+  function healthBarColor(percentage) {
+    if (percentage < 35) {
+      return 'rgba(244, 67, 54, 0.7)';
+    } else if (percentage < 50) {
+      return 'rgba(255, 235, 59, 0.7)';
+    }
+    return 'rgba(76, 175, 80, 0.7)';
   }
 
   return (
-    <div className="card">
+    <div className={`card ${showDamage ? 'recently-damaged' : ''}`} onClick={handleClick}>
       <img src={`/images/${card.name}.gif`} alt={card.name} />
       <div className="stars">{'★'.repeat(card.stars)}</div>
       <div className="health-bar-container">
-        <div className="health-bar" style={{ width: `${healthPercentage}%`, backgroundColor: healthBarColor }}></div>
+        <div className="health-bar" style={{ width: `${healthPercentage}%`, backgroundColor: healthBarColor(healthPercentage) }}></div>
       </div>
+      {recentlyHealed && (
+        <div className="heal-value">+{healAmount}</div>
+      )}
+      {showDamage && (
+        <div className="damage-value">-{card.recentDamage}</div>
+      )}
       <div className="actions">
-        <button className='attack-button button'>
+        <button className='attack-button button' onClick={handleAttackClick}>
           <img src={'/images/attack.png'} alt="Attack" />
         </button>
-        <button className='heal-button button'>
+        <button className='heal-button button' onClick={handleHeal}>
           <img src={'/images/heal.png'} alt="Heal" />
         </button>
         <button className='def-button button'>
@@ -32,4 +82,5 @@ function Card({ card }) {
     </div>
   );
 }
+
 export default Card;
