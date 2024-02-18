@@ -7,16 +7,18 @@
     object-fit: cover;
     transform: scaleX(-1);
     z-index: -2;
+    overflow: hidden;
 }
 
 .game-overlay {
     position: absolute;
-    top: 0;
+    top: 100px;
     left: 0;
     width: 100%;
     height: 110%;
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 0;
+    overflow: hidden;
 }
 
 .game-container {
@@ -30,8 +32,8 @@
     z-index: 1;
     margin-bottom: 10rem;
     margin-top: 10rem;
-    ;
     gap: 2rem;
+    overflow: hidden;
 
 }
 
@@ -45,7 +47,7 @@
     gap: 2.2rem;
     padding: 20px;
     border-radius: 10px;
-    
+
 }
 
 .game-button {
@@ -98,5 +100,33 @@
 
     100% {
         background-position: 0% 50%;
+    }
+}
+
+.log {
+    color: rgb(226, 208, 208);
+    background-color: rgba(0, 0, 0, 0.212);
+    border-radius: 5px;
+    position: relative;
+    font-size: 2rem;
+    visibility: hidden;
+   bottom:10px;
+   min-height: 20px;
+   font-family: GenFont2;
+    
+
+    &.active {
+        visibility: visible;
+        animation: fadeOut 3s ease forwards;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
     }
 }
