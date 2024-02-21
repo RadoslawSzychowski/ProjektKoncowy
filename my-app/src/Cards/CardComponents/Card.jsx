@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../Cards.scss';
 
-function Card({ card, onHeal, onAttack, attackMode }) {
+function Card({ card, onHeal, onAttack, attackMode, isActionDisabled }) {
   const [recentlyHealed, setRecentlyHealed] = useState(false);
   const [healAmount, setHealAmount] = useState(0);
   const healthPercentage = Math.round((card.hp / card.maxHp) * 100);
   const [showDamage, setShowDamage] = useState(false);
+
+
 
   useEffect(() => {
     if (recentlyHealed) {
@@ -15,6 +17,7 @@ function Card({ card, onHeal, onAttack, attackMode }) {
       return () => clearTimeout(timer);
     }
   }, [recentlyHealed]);
+
 
   useEffect(() => {
     if (card.recentDamage) {
@@ -69,10 +72,10 @@ function Card({ card, onHeal, onAttack, attackMode }) {
         <div className="damage-value">-{card.recentDamage}</div>
       )}
       <div className="actions">
-        <button className='attack-button button' onClick={handleAttackClick}>
+        <button disabled={isActionDisabled} className='attack-button button' onClick={handleAttackClick}>
           <img src={'/images/attack.png'} alt="Attack" />
         </button>
-        <button className='heal-button button' onClick={handleHeal}>
+        <button disabled={isActionDisabled} className='heal-button button' onClick={handleHeal}>
           <img src={'/images/heal.png'} alt="Heal" />
         </button>
         <button className='def-button button'>

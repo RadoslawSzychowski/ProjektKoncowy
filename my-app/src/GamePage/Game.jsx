@@ -14,11 +14,16 @@ const Game = () => {
   const [logMessage, setLogMessage] = useState("");
   const [isLogVisible, setIsLogVisible] = useState(false);
 
+
   useEffect(() => {
     const { playerCards, computerCards } = shuffleAndDeal(deck);
     setPlayerCards(playerCards);
     setComputerCards(computerCards);
+   
   }, []);
+
+
+
 
   useEffect(() => {
     if (isLogVisible) {
@@ -29,48 +34,63 @@ const Game = () => {
     }
   }, [isLogVisible]);
 
-  const handleHeal = (cardToHeal, healValue) => {
-    setPlayerCards(currentCards => {
-      return currentCards.map(card => {
-        if (card.name === cardToHeal.name) {
-          const newHp = Math.min(card.maxHp, card.hp + healValue);
-          setLogMessage(`${cardToHeal.name} healed ${healValue} HP`);
+ 
+    const handleHeal = (cardToHeal, healValue) => {
+
+
+      
+      setPlayerCards(currentCards => {
+        return currentCards.map(card => {
+          if (card.name === cardToHeal.name) {
+            const newHp = Math.min(card.maxHp, card.hp + healValue);
+            setLogMessage(`${cardToHeal.name} healed ${healValue} HP`);
+            setIsLogVisible(true);
+            return { ...card, hp: newHp, recentlyHealed: true };
+          }
+          return card;
+        });
+      });
+      }
+    
+
+  const handleAttack = (selectedCard) => {
+
+
+      if (attackMode.isActive && attackMode.attackingCard) {
+        if (attackMode.attackingCard.name !== selectedCard.name) {
+          const damage = Math.max(attackMode.attackingCard.attack - selectedCard.defense, 5);
+          setLogMessage(`${attackMode.attackingCard.name} dealt ${damage} damage to ${selectedCard.name}`);
           setIsLogVisible(true);
-          return { ...card, hp: newHp };
+
+       
+          updateCardsAfterAttack(selectedCard, damage);
+
+          setAttackMode({ isActive: false, attackingCard: null }); 
+        }
+      } else {
+        setAttackMode({ isActive: true, attackingCard: selectedCard });
+      }
+    }
+  
+
+  const updateCardsAfterAttack = (cardToDamage, damage) => {
+    const updateCards = (cards) => {
+      return cards.map(card => {
+        if (card.name === cardToDamage.name) {
+          return { ...card, hp: Math.max(card.hp - damage, 0), recentDamage: damage }; // Dodano oznaczenie zadanych obrażeń
         }
         return card;
       });
-    });
-  };
+    };
 
-  const handleAttack = (selectedCard) => {
-    if (attackMode.isActive && attackMode.attackingCard) {
-      if (attackMode.attackingCard.name !== selectedCard.name) {
-        const damage = Math.max(attackMode.attackingCard.attack - selectedCard.defense, 5);
-        setLogMessage(`${attackMode.attackingCard.name} dealt ${damage} damage to ${selectedCard.name}`);
-        setIsLogVisible(true);
-
-        const updateCards = (cards, cardToDamage) => {
-          return cards.map(card => {
-            if (card.name === cardToDamage.name) {
-              return { ...card, hp: Math.max(card.hp - damage, 0) };
-            }
-            return card;
-          });
-        };
-
-        if (playerCards.some(card => card.name === selectedCard.name)) {
-          setPlayerCards(currentCards => updateCards(currentCards, selectedCard));
-        } else if (computerCards.some(card => card.name === selectedCard.name)) {
-          setComputerCards(currentCards => updateCards(currentCards, selectedCard));
-        }
-
-        setAttackMode({ isActive: false, attackingCard: null });
-      }
-    } else {
-      setAttackMode({ isActive: true, attackingCard: selectedCard });
+    if (playerCards.some(card => card.name === cardToDamage.name)) {
+      setPlayerCards(currentCards => updateCards(currentCards));
+    } else if (computerCards.some(card => card.name === cardToDamage.name)) {
+      setComputerCards(currentCards => updateCards(currentCards));
     }
   };
+
+ 
 
   return (
     <>
@@ -79,7 +99,7 @@ const Game = () => {
         <div className="game-overlay"></div>
       </div>
       <div className='game-container'>
-        <Deck deck={computerCards} onAttack={handleAttack} attackMode={attackMode} />
+        <Deck deck={computerCards} onAttack={handleAttack} attackMode={attackMode}  />
         <p className={`log ${isLogVisible ? 'active' : ''}`}>{logMessage}</p>
         <Deck deck={playerCards} onHeal={handleHeal} onAttack={handleAttack} attackMode={attackMode} />
         <div className="game-controls">
