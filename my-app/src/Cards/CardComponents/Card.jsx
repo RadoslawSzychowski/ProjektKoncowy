@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import '../Cards.scss';
 
-function Card({ card, onHeal, onAttack, attackMode, isActionDisabled }) {
+function Card({ card, onHeal, onAttack, attackMode, onDefend, isActionDisabled }) {
   const [recentlyHealed, setRecentlyHealed] = useState(false);
   const [healAmount, setHealAmount] = useState(0);
   const healthPercentage = Math.round((card.hp / card.maxHp) * 100);
   const [showDamage, setShowDamage] = useState(false);
 
 
-
+// animacja heal
   useEffect(() => {
     if (recentlyHealed) {
       const timer = setTimeout(() => {
@@ -18,7 +18,7 @@ function Card({ card, onHeal, onAttack, attackMode, isActionDisabled }) {
     }
   }, [recentlyHealed]);
 
-
+// animacja dmg
   useEffect(() => {
     if (card.recentDamage) {
       setShowDamage(true);
@@ -29,7 +29,7 @@ function Card({ card, onHeal, onAttack, attackMode, isActionDisabled }) {
     }
   }, [card.recentDamage]);
 
-
+// obsługa leczenia
   const handleHeal = () => {
     const healValue = Math.round(card.maxHp * 0.1) + Math.floor(Math.random() * 10) + 1;
     onHeal(card, healValue);
@@ -37,6 +37,16 @@ function Card({ card, onHeal, onAttack, attackMode, isActionDisabled }) {
     setRecentlyHealed(true);
   };
 
+  // obsługa obrony
+  const handleDefend = (e) => {
+    e.stopPropagation();
+    if (!isActionDisabled) {
+      onDefend(card);
+      
+    }
+  };
+
+  // obsługa kliku ataku
   const handleClick = (e) => {
     e.stopPropagation();
     if (attackMode.isActive && attackMode.attackingCard && attackMode.attackingCard.name !== card.name) {
@@ -44,19 +54,23 @@ function Card({ card, onHeal, onAttack, attackMode, isActionDisabled }) {
     }
   };
 
+// obsługa ataku
   const handleAttackClick = (e) => {
     e.stopPropagation();
     onAttack(card);
   };
 
+  // health bar color
   function healthBarColor(percentage) {
     if (percentage < 35) {
       return 'rgba(244, 67, 54, 0.7)';
-    } else if (percentage < 50) {
+    } else if (percentage < 60) {
       return 'rgba(255, 235, 59, 0.7)';
     }
     return 'rgba(76, 175, 80, 0.7)';
   }
+
+
 
   return (
     <div className={`card ${showDamage ? 'recently-damaged' : ''}`} onClick={handleClick}>
@@ -78,7 +92,7 @@ function Card({ card, onHeal, onAttack, attackMode, isActionDisabled }) {
         <button disabled={isActionDisabled} className='heal-button button' onClick={handleHeal}>
           <img src={'/images/heal.png'} alt="Heal" />
         </button>
-        <button className='def-button button'>
+        <button className='def-button button' onClick={handleDefend}>
           <img src={'/images/def.png'} alt="Defend" />
         </button>
       </div>
