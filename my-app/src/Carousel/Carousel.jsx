@@ -14,11 +14,8 @@ const Carousel = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isHovering, setIsHovering] = useState(false);
     const intervalRef = useRef(null);
-    const [videoStarted, setVideoStarted] = useState(false);
 
-    const startVideo = () => {
-        setVideoStarted(true);
-    };
+
 
     const pauseCarousel = () => {
         if (intervalRef.current) clearInterval(intervalRef.current);
@@ -36,10 +33,10 @@ const Carousel = () => {
         }
         return () => pauseCarousel();
     }, [isHovering]);
+    
     return (
         <>
-            <div className="section-with-gradient"></div>
-            <div className="carousel-content" onClick={startVideo}>
+            <div className="carousel-content" >
                 <video src={require('../images/carouselBg.mp4')} autoPlay muted loop className="carousel__background-video" />
                 <h1>Latest Additions: Unveiling the Newest Gems in Our Collection!</h1>
                 <div className="carousel__images"

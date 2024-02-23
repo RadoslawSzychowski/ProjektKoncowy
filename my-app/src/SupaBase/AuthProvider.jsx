@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import supabase from './/supabaseClient';
+import supabase from './supabase';
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
         const init = async () => {
             const { data, error } = await supabase.auth.getSession();
             if (error) {
-                console.error('Błąd podczas pobierania sesji:', error);
+                console.error('Error getting session:', error);
             } else {
                 setUser(data?.session?.user || null);
             }
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
             const { error } = await supabase.auth.signInWithPassword({ email, password });
             if (error) throw error;
         } catch (error) {
-            console.error('Błąd logowania:', error);
+            console.error('Login error:', error);
             alert(error.error_description || error.message);
         } finally {
             setLoading(false);
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
             const { error } = await supabase.auth.signUp({ email, password });
             if (error) throw error;
         } catch (error) {
-            console.error('Błąd rejestracji:', error);
+            console.error('Register error:', error);
             alert(error.error_description || error.message);
         } finally {
             setLoading(false);
@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }) => {
             const { error } = await supabase.auth.signOut();
             if (error) throw error;
         } catch (error) {
-            console.error('Błąd wylogowania:', error);
+            console.error('Logout error:', error);
             alert(error.error_description || error.message);
         } finally {
             setUser(null);
